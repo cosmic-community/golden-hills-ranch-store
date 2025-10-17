@@ -1,6 +1,22 @@
 import { MetadataRoute } from 'next'
 import { getProducts, getCategories, getPages } from '@/lib/cosmic'
 
+// Helper function to safely create a Date object
+function safeDate(dateString: string | undefined): Date {
+  if (!dateString) {
+    return new Date()
+  }
+  
+  const date = new Date(dateString)
+  
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    return new Date()
+  }
+  
+  return date
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://goldenhillsranch.com'
   
@@ -10,21 +26,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   const productUrls = products.map((product: any) => ({
     url: `${baseUrl}/products/${product.slug}`,
-    lastModified: new Date(product.modified_at),
+    lastModified: safeDate(product.modified_at),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
   
   const categoryUrls = categories.map((category: any) => ({
     url: `${baseUrl}/products?category=${category.slug}`,
-    lastModified: new Date(category.modified_at),
+    lastModified: safeDate(category.modified_at),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
   
   const pageUrls = pages.map((page: any) => ({
     url: `${baseUrl}/${page.slug === 'about-golden-hills-ranch' ? 'about' : page.slug}`,
-    lastModified: new Date(page.modified_at),
+    lastModified: safeDate(page.modified_at),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
