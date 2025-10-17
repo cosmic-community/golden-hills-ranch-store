@@ -60,7 +60,7 @@ export default async function HomePage() {
           
           {categories.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {categories.map((category) => (
+              {categories.map((category: Category) => (
                 <CategoryCard key={category.id} category={category as Category} />
               ))}
             </div>
@@ -84,7 +84,7 @@ export default async function HomePage() {
           
           {featuredProducts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProducts.map((product) => (
+              {featuredProducts.map((product: Product) => (
                 <ProductCard key={product.id} product={product as Product} />
               ))}
             </div>
@@ -114,7 +114,7 @@ export default async function HomePage() {
           
           {displayedReviews.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {displayedReviews.map((review) => (
+              {displayedReviews.map((review: Review) => (
                 <ReviewCard key={review.id} review={review as Review} />
               ))}
             </div>

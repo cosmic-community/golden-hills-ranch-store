@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   
   // Calculate average rating
   const averageRating = reviews.length > 0
-    ? reviews.reduce((sum: number, review: any) => sum + parseInt(review.metadata?.rating?.key || '0'), 0) / reviews.length
+    ? reviews.reduce((sum: number, review: Review) => sum + parseInt(review.metadata?.rating?.key || '0'), 0) / reviews.length
     : 0
   
   return (
@@ -188,7 +188,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mt-16">
             <h2 className="text-3xl font-bold text-primary mb-8">Customer Reviews</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {reviews.map((review) => (
+              {reviews.map((review: Review) => (
                 <ReviewCard key={review.id} review={review as Review} />
               ))}
             </div>

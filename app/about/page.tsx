@@ -76,7 +76,7 @@ export default async function AboutPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {teamMembers.map((member) => (
+              {teamMembers.map((member: TeamMember) => (
                 <TeamMemberCard key={member.id} member={member as TeamMember} />
               ))}
             </div>

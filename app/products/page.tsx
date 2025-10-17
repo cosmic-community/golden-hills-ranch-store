@@ -31,7 +31,7 @@ export default async function ProductsPage({
   
   // Filter products by category if specified
   const filteredProducts = params.category
-    ? products.filter((product: any) => 
+    ? products.filter((product: Product) => 
         product.metadata?.category?.slug === params.category
       )
     : products
@@ -53,7 +53,7 @@ export default async function ProductsPage({
         
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product) => (
+            {filteredProducts.map((product: Product) => (
               <ProductCard key={product.id} product={product as Product} />
             ))}
           </div>
