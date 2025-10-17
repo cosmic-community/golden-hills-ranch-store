@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script src="/dashboard-console-capture.js" />
+        <Script src="/dashboard-console-capture.js" strategy="afterInteractive" />
       </head>
       <body className={inter.className}>
         <Header />
