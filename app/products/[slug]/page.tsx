@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="space-y-4">
                 <div className="card">
                   <img
-                    src={`${typedProduct.metadata.product_images[0].imgix_url}?w=1200&h=900&fit=crop&auto=format,compress`}
+                    src={`${typedProduct.metadata.product_images?.[0]?.imgix_url}?w=1200&h=900&fit=crop&auto=format,compress`}
                     alt={typedProduct.metadata.product_name}
                     width={600}
                     height={450}
@@ -81,7 +81,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     {typedProduct.metadata.product_images.slice(1).map((image, index) => (
                       <div key={index} className="card">
                         <img
-                          src={`${image.imgix_url}?w=400&h=300&fit=crop&auto=format,compress`}
+                          src={`${image?.imgix_url}?w=400&h=300&fit=crop&auto=format,compress`}
                           alt={`${typedProduct.metadata.product_name} - Image ${index + 2}`}
                           width={200}
                           height={150}
